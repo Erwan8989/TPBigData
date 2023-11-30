@@ -1,4 +1,4 @@
-from minio import Minio, S3Error
+from minio import Minio
 
 bucket_name = "transactions"
 
