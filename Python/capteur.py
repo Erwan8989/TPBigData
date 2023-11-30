@@ -1,4 +1,3 @@
-
 from kafka import *
 import datetime as dt
 import json
