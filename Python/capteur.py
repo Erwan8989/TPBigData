@@ -47,7 +47,7 @@ for _ in range(200):
                              value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 
     producer.send("transactions", generate_transaction())
-    print(f"{_} - Message envoyé")
+    print(f" Message {_ + 1} envoyé")
 
     time.sleep(1)
 
