@@ -42,6 +42,14 @@ def generate_transaction():
 
 
 #Envoyer la data sur votre conducktor
+for _ in range(200):
+    producer = KafkaProducer(bootstrap_servers=['127.0.0.1:9092'],
+                             value_serializer=lambda x: json.dumps(x).encode('utf-8'))
+
+    producer.send("transactions", generate_transaction())
+    print(f"{_} - Message envoyé")
+
+    time.sleep(1)
 
 
 #--------------------------------------------------------------------
