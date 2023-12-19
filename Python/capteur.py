@@ -1,4 +1,3 @@
-
 from kafka import *
 import datetime as dt
 import json
@@ -7,15 +6,18 @@ import time
 import uuid
 
 
-
 def generate_transaction():
     transaction_types = ['achat', 'remboursement', 'transfert']
     payment_methods = ['carte_de_credit', 'especes', 'virement_bancaire', 'erreur']
 
     current_time = dt.datetime.now().isoformat()
 
-    Villes = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Strasbourg", "Montpellier", "Bordeaux", "Lille", "Rennes", "Reims", "Le Havre", "Saint-Étienne", "Toulon" , None]
-    Rues = ["Rue de la République", "Rue de Paris", "rue Auguste Delaune", "Rue Gustave Courbet ", "Rue de Luxembourg", "Rue Fontaine", "Rue Zinedine Zidane", "Rue de Bretagne", "Rue Marceaux", "Rue Gambetta", "Rue du Faubourg Saint-Antoine", "Rue de la Grande Armée", "Rue de la Villette", "Rue de la Pompe", "Rue Saint-Michel" , None]
+    Villes = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Strasbourg", "Montpellier", "Bordeaux",
+              "Lille", "Rennes", "Reims", "Le Havre", "Saint-Étienne", "Toulon", None]
+    Rues = ["Rue de la République", "Rue de Paris", "rue Auguste Delaune", "Rue Gustave Courbet ", "Rue de Luxembourg",
+            "Rue Fontaine", "Rue Zinedine Zidane", "Rue de Bretagne", "Rue Marceaux", "Rue Gambetta",
+            "Rue du Faubourg Saint-Antoine", "Rue de la Grande Armée", "Rue de la Villette", "Rue de la Pompe",
+            "Rue Saint-Michel", None]
 
     transaction_data = {
         "id_transaction": str(uuid.uuid4()),
@@ -41,7 +43,7 @@ def generate_transaction():
     return transaction_data
 
 
-#Envoyer la data sur votre conducktor
+# Envoyer la data sur votre conducktor
 for _ in range(200):
     producer = KafkaProducer(bootstrap_servers=['127.0.0.1:9092'],
                              value_serializer=lambda x: json.dumps(x).encode('utf-8'))
@@ -51,10 +53,9 @@ for _ in range(200):
 
     time.sleep(1)
 
-
-#--------------------------------------------------------------------
+# --------------------------------------------------------------------
 #                     MANIP SUR LES DF
-#--------------------------------------------------------------------
+# --------------------------------------------------------------------
 #       convertir USD en EUR
 #       ajouter le TimeZone
 #       remplacer la date en string en une valeur date
@@ -62,16 +63,11 @@ for _ in range(200):
 #       supprimer les valeur en None ( Adresse )
 
 
-
 # si ça vous gene faite mettez tout sur la meme partie ( en gros supprimer les sous structure pour tout mettre en 1er plan )
 # modifier le consumer avant
-
 
 
 # KAFKA PRODUCEUR
 # Reception des donnes en Pyspark ou en Spark scala
 # Manip
 # Envoie dans un bucket Minio ou sur hadoop pour les plus téméraire
-
-
-
