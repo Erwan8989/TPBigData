@@ -1,4 +1,5 @@
 import json
+import random
 
 from minio import Minio, S3Error
 
@@ -19,7 +20,7 @@ else:
     print("Bucket 'transactions' already exists")
 
 
-def write_minio(data, idx):
+def write_minio(data):
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(data, f)
 
